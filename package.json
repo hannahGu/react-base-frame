@@ -1,0 +1,25 @@
+{
+  "name": "react-color-hannah",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "gulp",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "hannah",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "babel-loader": "^6.3.2",
+    "babel-preset-react": "^6.23.0",
+    "gulp": "^3.9.1",
+    "gulp-inject": "^4.2.0",
+    "gulp-sequence": "^0.4.6",
+    "gulp-webpack": "^1.5.0",
+    "react": "^15.4.2",
+    "react-color": "^2.11.1",
+    "react-dom": "^15.4.2",
+    "react-router": "^3.0.2",
+    "webpack": "^2.2.1"
+  }
+}
