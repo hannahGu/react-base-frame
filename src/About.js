@@ -1,7 +1,7 @@
-import React from 'react'
-
+import React from 'react';
+import './about.css';
 export default React.createClass({
   render() {
-    return <div>About</div>
-  }
-})
+    return <div className="about">About</div>;
+  },
+});

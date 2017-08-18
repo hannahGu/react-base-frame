@@ -14,7 +14,6 @@ module.exports = {
           new webpack.optimize.DedupePlugin(),
           new webpack.optimize.OccurrenceOrderPlugin(),
           new webpack.optimize.UglifyJsPlugin(),
-          // new ExtractTextPlugin('[name].css', { allChunks: true }),
         ]
       : [],
 
@@ -25,14 +24,28 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel-loader?presets[]=es2015&presets[]=react',
       },
-      // {
-      //   test: /\.css$/,
-      //   loader: 'style!css!postcss'
-      // },
-      // {
-      //   test: /\.less$/,
-      //   loader: 'style!css!postcss!less'
-      // }
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+          },
+        ],
+      },
+      {
+        test: /\.less$/,
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'less-loader',
+          },
+        ],
+      },
     ],
   },
 };
