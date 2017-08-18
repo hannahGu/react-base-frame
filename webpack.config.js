@@ -1,15 +1,38 @@
+var webpack = require('webpack');
 module.exports = {
-  entry:'./src/main.js',
-  output:{
-    path:"./dist",
-    filename:"bundle.js"
+  entry: './index.js',
+
+  output: {
+    path: 'dist',
+    filename: 'bundle.js',
+    // publicPath: '/',
   },
-  module:{
-    loaders:[
-      {test:/\.js$/,loader: 'babel-loader',
-      query: {
-        presets: ['react', 'es2015']
-      }}
-    ]
-  }
-}
+
+  plugins:
+    process.env.NODE_ENV === 'production'
+      ? [
+          new webpack.optimize.DedupePlugin(),
+          new webpack.optimize.OccurrenceOrderPlugin(),
+          new webpack.optimize.UglifyJsPlugin(),
+          // new ExtractTextPlugin('[name].css', { allChunks: true }),
+        ]
+      : [],
+
+  module: {
+    loaders: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader?presets[]=es2015&presets[]=react',
+      },
+      // {
+      //   test: /\.css$/,
+      //   loader: 'style!css!postcss'
+      // },
+      // {
+      //   test: /\.less$/,
+      //   loader: 'style!css!postcss!less'
+      // }
+    ],
+  },
+};
