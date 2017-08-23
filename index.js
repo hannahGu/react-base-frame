@@ -10,6 +10,7 @@ render(
     <Route path="/" component={App}>
       <IndexRoute component={Home} />
       <Route path="/about" component={About} />
+      <Route path="/404" component={App} />
     </Route>
   </Router>,
   document.getElementById('app'),

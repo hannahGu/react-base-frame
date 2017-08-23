@@ -1,22 +1,19 @@
 var webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = {
   entry: './index.js',
 
   output: {
     path: 'dist',
-    filename: 'bundle.js',
-    // publicPath: '/',
+    filename: 'index.js',
+    publicPath: '/dist/',
   },
-
-  plugins:
-    process.env.NODE_ENV === 'production'
-      ? [
-          new webpack.optimize.DedupePlugin(),
-          new webpack.optimize.OccurrenceOrderPlugin(),
-          new webpack.optimize.UglifyJsPlugin(),
-        ]
-      : [],
-
+  plugins: [
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.optimize.UglifyJsPlugin(),
+    new ExtractTextPlugin('index.css', { allChunks: true }),
+  ],
   module: {
     loaders: [
       {
@@ -26,25 +23,14 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [
-          {
-            loader: 'style-loader',
-          },
-          {
-            loader: 'css-loader',
-          },
-        ],
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader'),
       },
       {
         test: /\.less$/,
-        use: [
-          {
-            loader: 'style-loader',
-          },
-          {
-            loader: 'less-loader',
-          },
-        ],
+        loader: ExtractTextPlugin.extract(
+          'style-loader',
+          'css-loader!less-loader'
+        )
       },
     ],
   },
