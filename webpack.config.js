@@ -13,13 +13,21 @@ module.exports = {
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin(),
     new ExtractTextPlugin('index.css', { allChunks: true }),
+
   ],
   module: {
+
     loaders: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel-loader?presets[]=es2015&presets[]=react',
+        loader: 'babel',
+        query: {
+          plugins: [
+            ["import", { "libraryName": "antd-mobile","style": "css" }]
+          ],
+          presets: ['es2015', 'react']
+        }
       },
       {
         test: /\.css$/,
@@ -31,6 +39,10 @@ module.exports = {
           'style-loader',
           'css-loader!less-loader'
         )
+      },
+      {
+        test: /\.(png|jpg)$/,
+        loader: 'file-loader?name=images/.[name].[ext]'
       },
     ],
   },

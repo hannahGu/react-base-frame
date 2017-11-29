@@ -1,6 +1,6 @@
 import App from "../App";
 import About from "../About";
-import Home from "../Home";
+import Main from "../Main";
 const routesConfig = [
   {
     path: "/",
@@ -8,12 +8,12 @@ const routesConfig = [
     // indexRoute: { onEnter: (nextState, replace) => replace('/welcome') }, // indexredirect
     // routes: [
     //   {
-    //     path: "/about",
-    //     component: About
+    //     path: "/main",
+    //     component: Main
     //   },
     //   {
-    //     path: "/home",
-    //     component: Home
+    //     path: "/about",
+    //     component: About
     //   }
     // ]
   },
@@ -22,8 +22,8 @@ const routesConfig = [
     component: About
   },
   {
-    path: "/home",
-    component: Home
+    path: "/main",
+    component: Main
   }
 ];
 
