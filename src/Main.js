@@ -75,16 +75,18 @@ export default class Main extends React.Component {
                       <Badge text={"峰鸟配送"} hot style={styles.blueBg} />
                     )}
                   </p>
-                  <p>
-                    637m/<span style={styles.blueFont}>30分钟</span>
+                  <p style={styles.smFont}>
+                    <span>{`${falseBussinessInfo[key]['distance']}m / `}</span>
+                    <span style={styles.blueFont}>{falseBussinessInfo[key]['estimate_time']}</span>
                   </p>
                 </div>
               }
             >
-              <Badge text={"品牌"} hot style={styles.yellowBg} />上沙麦当劳
+            {falseBussinessInfo[key]['brand'] && <Badge text={"品牌"} hot style={styles.yellowBg} />}
+              {falseBussinessInfo[key]['shop_name']}
               <Brief>
-                <p style={styles.smFont}>分数 4.7</p>
-                <p style={styles.smFont}> ¥ 20起送 ／ 配送费约 ¥ 5</p>
+                <p style={styles.smFont}>{`分数 ${falseBussinessInfo[key]['shop_rating']}`}</p>
+                <p style={styles.smFont}>{`¥ ${falseBussinessInfo[key]['start_send']}起送 ／ 配送费约 ¥ ${falseBussinessInfo[key]['send_cost']}`}</p>
               </Brief>
             </Item>
           ))}
