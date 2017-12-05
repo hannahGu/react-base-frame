@@ -8,11 +8,7 @@ export default class Order extends Basic {
   render() {
     return (
       <div>
-        <NavBar
-          mode="light"
-          icon={<Icon type="left" />}
-          onLeftClick={e => this._back}
-        >
+        <NavBar icon={<Icon type="left" />} onLeftClick={e => this._back}>
           订单
         </NavBar>
         <List>

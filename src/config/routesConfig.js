@@ -18,24 +18,23 @@ const routesConfig = [
     //     component: About
     //   }
     // ]
-  },
-  {
-    path: "/about",
-    component: About
-  },
-  {
-    path: "/main",
-    component: Main
-  },
-  {
-    path: "/order",
-    component: Order
-  },
-  {
-    path: "/mine",
-    component: Mine
-  },
-
+  }
+  // {
+  //   path: "/about",
+  //   component: About
+  // },
+  // {
+  //   path: "/main",
+  //   component: Main
+  // },
+  // {
+  //   path: "/order",
+  //   component: Order
+  // },
+  // {
+  //   path: "/mine",
+  //   component: Mine
+  // },
 ];
 
 export default routesConfig;
