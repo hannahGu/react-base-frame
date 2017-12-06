@@ -4,6 +4,7 @@ import Basic from "./Basic";
 import Main from "./Main";
 import Mine from "./Mine";
 import Order from "./Order";
+import "./app.less";
 const items = [
   {
     title: "外卖",
@@ -28,25 +29,53 @@ export default class App extends Basic {
   constructor(props) {
     super(props);
     this.state = {
-      selectedTab: "main"
+      selectedTab: "main",
+      loading: true
     };
   }
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({ loading: false });
+    }, Math.floor(Math.random() * 2000));
+  }
   render() {
+    const loadingState = this.state.loading ? "block" : "none";
     return (
       <div>
         <div
           style={{
             height: "100%",
             width: "100%",
-            position: "fixed",
-            top: 0
+            position: "fixed"
           }}
         >
+          <div
+            style={{
+              height: "100%",
+              position: "relative",
+              display: loadingState
+            }}
+          >
+            <div
+              style={{
+                width: 100,
+                height: 100,
+                marginLeft: -50,
+                marginTop: -50,
+                left: "50%",
+                top: "50%",
+                position: "absolute",
+                backgroundImage: "url(" + require("./images/loading.png") + ")",
+                animation:
+                  "loadanimate 3.6s steps(6) infinite, updown 0.8s infinite"
+              }}
+            />
+          </div>
           <TabBar
             unselectedTintColor="#949494"
             tintColor="#33A3F4"
             barTintColor="white"
-            //  hidden={this.state.hidden}
+            hidden={this.state.loading}
           >
             {items.map((item, i) => (
               <TabBar.Item
@@ -74,12 +103,20 @@ export default class App extends Basic {
                 }
                 selected={this.state.selectedTab === item.key}
                 onPress={() => {
+                  const time = Math.floor(Math.random() * 2000);
                   this.setState({
                     selectedTab: item.key
                   });
-                  this._forward(item.key);
+                  if (item.key !== "mine") {
+                    this.setState({
+                      loading: true
+                    });
+                    setTimeout(() => {
+                      this.setState({ loading: false });
+                    }, time);
+                    this._forward(item.key);
+                  }
                 }}
-                //  data-seed="logId"
               >
                 <item.component />
               </TabBar.Item>

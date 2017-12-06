@@ -2,6 +2,7 @@ import React from "react";
 import { InputItem, Flex, Grid, List, Badge } from "antd-mobile";
 import "./main.less";
 import { falseBussinessInfo } from "./falsedata/falsedata";
+import "./main.less";
 const flexItems = ["辣鸭脖", "韩国炸鸡", "我市一只鸡", "脆皮鸡", "麦当劳", "老鸭粉丝", "牛排", "黄焖鸡"];
 const img = require("./images/slider-pic/slider-pic1.jpg");
 const listItems = Array.from(new Array(16)).map((_val, i) => ({
@@ -15,6 +16,7 @@ const keys = [];
 for (let key in falseBussinessInfo) {
   keys.push(key);
 }
+
 export default class Main extends React.Component {
   render() {
     return (
@@ -76,17 +78,25 @@ export default class Main extends React.Component {
                     )}
                   </p>
                   <p style={styles.smFont}>
-                    <span>{`${falseBussinessInfo[key]['distance']}m / `}</span>
-                    <span style={styles.blueFont}>{falseBussinessInfo[key]['estimate_time']}</span>
+                    <span>{`${falseBussinessInfo[key]["distance"]}m / `}</span>
+                    <span style={styles.blueFont}>
+                      {falseBussinessInfo[key]["estimate_time"]}
+                    </span>
                   </p>
                 </div>
               }
             >
-            {falseBussinessInfo[key]['brand'] && <Badge text={"品牌"} hot style={styles.yellowBg} />}
-              {falseBussinessInfo[key]['shop_name']}
+              {falseBussinessInfo[key]["brand"] && (
+                <Badge text={"品牌"} hot style={styles.yellowBg} />
+              )}
+              {falseBussinessInfo[key]["shop_name"]}
               <Brief>
-                <p style={styles.smFont}>{`分数 ${falseBussinessInfo[key]['shop_rating']}`}</p>
-                <p style={styles.smFont}>{`¥ ${falseBussinessInfo[key]['start_send']}起送 ／ 配送费约 ¥ ${falseBussinessInfo[key]['send_cost']}`}</p>
+                <p style={styles.smFont}>{`分数 ${falseBussinessInfo[key][
+                  "shop_rating"
+                ]}`}</p>
+                <p style={styles.smFont}>{`¥ ${falseBussinessInfo[key][
+                  "start_send"
+                ]}起送 ／ 配送费约 ¥ ${falseBussinessInfo[key]["send_cost"]}`}</p>
               </Brief>
             </Item>
           ))}
